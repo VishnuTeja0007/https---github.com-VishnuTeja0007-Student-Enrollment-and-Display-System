@@ -1,9 +1,13 @@
 @import "tailwindcss";
+/* adding custom breakpoint for responsiveness */
 @theme{
     --breakpoint-xs: 300px;
     --breakpoint-s: 470px;
   
 }
+
+/* using varaible to reuse the color and to change it one time when needed */
+
 :root {
   --primary-color: #242038;
   
@@ -44,7 +48,6 @@ form *{
     border: 1px solid var(--primary-color);
 }
 #image{
-    /* background-image: url('./assets/361.jpg'); */
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -174,13 +177,6 @@ form *{
     background-color: #D6BFAE;
 }
 
-/* For Firefox */
-.student-record {
-    scrollbar-width: thin;
-    scrollbar-color: #EED6BF #f3f4f6;
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .student-details {
         grid-template-columns: 1fr;

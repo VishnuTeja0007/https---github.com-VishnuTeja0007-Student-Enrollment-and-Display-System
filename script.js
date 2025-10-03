@@ -1,19 +1,35 @@
 //get student list from local storage function when browser loads
-window.addEventListener("DOMContentLoaded", createAllElements);
+window.addEventListener("DOMContentLoaded", () => {
+    // Initialize studentList from localStorage or empty array if data not found in local storage
+    const storedList = localStorage.getItem("studentDetailsList");
+    if (!storedList) {
+        localStorage.setItem("studentDetailsList", JSON.stringify([]));
+    }
+    createAllElements();
+});
 
+//createAllElements function to create the divs dynamically when browser loads
 function createAllElements(){
     const studentList = JSON.parse(localStorage.getItem("studentDetailsList")) || [];
-    if(studentList.length === 0){
-        return -1;
-    }
-    else{   
-        for (let student of studentList){
-            createElement(student);
+    if (studentList.length === 0) {
+        const displaySection = document.querySelector('.display-section');
+        if (displaySection) {
+            displaySection.innerHTML = '<p class="text-center text-gray-500">No student records found. Add a new student to get started.</p>';
         }
+        return [];
     }
+    
+    // Clear existing content before repopulating
+    const displaySection = document.querySelector('.display-section');
+    if (displaySection) {
+        displaySection.innerHTML = '';
+    }
+    
+    studentList.forEach(student => createElement(student));
+    return studentList;
 }
 
-//student object class and constructor
+//StudentDetails class and constructor instead of writing each time (easy to cretae when using loops)
 class StudentDetails {
     constructor(id, name, dob, email, phone, address) {
         this.id = id;
@@ -31,6 +47,10 @@ const studentList = JSON.parse(localStorage.getItem("studentDetailsList")) || []
 //form handlers
 const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Initialize studentList from localStorage
+    let studentList = JSON.parse(localStorage.getItem("studentDetailsList")) || [];
+    
     const formData = new FormData(form);
     
     // Get form values
@@ -41,24 +61,33 @@ const handleSubmit = (e) => {
     const phone = formData.get('phone');
     const address = formData.get('address');
 
-    // Check if ID already exists
-    const idExists = studentList.some(student => student.id === id);
-    if (idExists) {
-        alert('A student with this ID already exists!');
-        return;
-    }
+    // Check if ID already exists (only for new entries)
+    const existingStudentIndex = studentList.findIndex(student => student.id === id);
+    const isEditing = existingStudentIndex !== -1;
 
-    const student = new StudentDetails(id, name, dob, email, phone, address);
-    studentList.push(student);
+    if (isEditing) {
+        // Update existing student
+        studentList[existingStudentIndex] = new StudentDetails(id, name, dob, email, phone, address);
+    } else {
+        // Add new student
+        studentList.push(new StudentDetails(id, name, dob, email, phone, address));
+    }
     
+    // Save back to localStorage
     localStorage.setItem("studentDetailsList", JSON.stringify(studentList));
-    form.reset();
-    createElement(student);
     
-    document.querySelector(".display-section").scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
+    // Reset form and update display
+    form.reset();
+    createAllElements();
+    
+    // Scroll to display section
+    const displaySection = document.querySelector(".display-section");
+    if (displaySection) {
+        displaySection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
 };
 
 form.addEventListener('submit', handleSubmit);
@@ -125,8 +154,11 @@ function createElement(student) {
 const displaySection = document.querySelector('.display-section');
 displaySection.style.overflowY="auto"
 displaySection.style.maxHeight="400px"
+
 // Reset form
 const resetBtn = document.getElementById('reset-form');
-resetBtn.addEventListener('click', () => {
-    form.reset();
-});
+if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+        form.reset();
+    });
+}
