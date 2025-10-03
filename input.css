@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@theme{
+    --breakpoint-xs: 300px;
+    --breakpoint-s: 470px;
+  
+}
+:root {
+  --primary-color: #242038;
+  
+}
+
+
+
+*{
+    box-sizing: border-box;
+    font-family: 'poppins';
+}
+
+.font-color{
+    color: var(--primary-color);
+}
+
+/* form css starts here */
+
+form *{
+    display: block;
+}
+.radio-button{
+    display: inline;
+    width: 16px;
+    height: 16px;   
+    margin-right: 3px;
+}
+.input-fields{
+    width: 100%;
+    padding: 10px;
+    margin-top: 2.5px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--primary-color);
+    font-size: 16px;
+    background-color: white;
+}
+.input-fields:focus{
+    border: 1px solid var(--primary-color);
+}
+#image{
+    /* background-image: url('./assets/361.jpg'); */
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.Button-group{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Student Records Display */
+.display-section {
+    width: 80%;
+    margin: 4rem auto;
+    padding: 1.5rem;
+    background-color: #F2E0CF;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.student-record {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.student-record h3{
+    text-align: center;
+}
+
+.student-record:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.student-record h3 {
+    color: #242038;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #EED6BF;
+    padding-bottom: 0.5rem;
+}
+
+.student-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.detail-item {
+    margin-bottom: 0.5rem;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #242038;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+.detail-value {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.record-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.btn-edit, .btn-delete {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-edit {
+    background-color: #EED6BF;
+    color: #242038;
+}
+
+.btn-edit:hover {
+    background-color: #D6BFAE;
+}
+
+.btn-delete {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.btn-delete:hover {
+    background-color: #ffcdd2;
+}
+
+/* Custom scrollbar styles */
+.student-record::-webkit-scrollbar {
+    width: 6px;
+}
+
+.student-record::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 3px;
+}
+
+.student-record::-webkit-scrollbar-thumb {
+    background-color: #EED6BF;
+    border-radius: 3px;
+}
+
+.student-record::-webkit-scrollbar-thumb:hover {
+    background-color: #D6BFAE;
+}
+
+/* For Firefox */
+.student-record {
+    scrollbar-width: thin;
+    scrollbar-color: #EED6BF #f3f4f6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .student-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .record-actions {
+        justify-content: space-between;
+    }
+}
