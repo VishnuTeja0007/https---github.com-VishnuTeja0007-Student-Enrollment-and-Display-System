@@ -52,12 +52,75 @@ form *{
     width: 100%;
     object-fit: cover;
 }
-.Button-group{
+/* Button Container */
+.Button-group {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 10px;
-    margin-top: 10px;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Base button styles */
+.Button-group input[type="submit"],
+.Button-group input[type="reset"] {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    text-align: center;
+}
+
+/* Register Button */
+.Button-group input[type="submit"] {
+    background-color: #242038;  /* Primary color */
+    color: white;
+}
+
+.Button-group input[type="submit"]:hover {
+    background-color: #3a3158;  /* Slightly lighter primary */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset Button */
+.Button-group input[type="reset"] {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    border: 2px solid #d1d5db;
+}
+
+.Button-group input[type="reset"]:hover {
+    background-color: #e5e7eb;
+    border-color: #9ca3af;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Active state */
+.Button-group input[type="submit"]:active,
+.Button-group input[type="reset"]:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Focus state for accessibility */
+.Button-group input[type="submit"]:focus,
+.Button-group input[type="reset"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(36, 32, 56, 0.3);
+}
+
+/* Disabled state */
+.Button-group input[type="submit"]:disabled,
+.Button-group input[type="reset"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 /* Student Records Display */
