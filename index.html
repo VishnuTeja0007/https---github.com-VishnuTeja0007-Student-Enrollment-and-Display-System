@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body style="background-color:#EED6BF;" class="h-[100vh] w-[100vw] text-grey-700">
+    <section
+        class="main h-[auto] w-[90%] mx-auto mt-10 bg-[#F2E0CF] p-[30px]  flex flex-col items-center justify-start gap-[20px]">
+        <h1 class="font-color text-4xl xs:text-2xl text-center font-semibold">Student Enrollment and Display System</h1>
+        <h3 class="text-lg text-center text-gray-600 mb-4 px-4">A comprehensive platform to register and manage student information with an intuitive display interface.</h3>
+        <div class="w-[100%] lg:h-[600px] p-[10px]  xs:h-[auto]  flex xs:flex-col  lg:flex-row items-center gap-[10px] justify-start">
+         <!-- left section -->
+            <div class="side-card max-h-[600px] lg:w-[40%] xs:w-full  bg-[#242038] p-[10px] pb-[0px]  xs:h-[50vh] s:h-[90vh] xs:left-[10px] flex flex-col relative items-center justify-start ">
+            <h1 class="text-[#EED6BF] text-3xl text-center relative xs:top-[40px]">Fill this form up!!</h1>
+            <div   class="image-div s:w-[80%] s:h-[70%] md:w-auto md:h-auto  xs:max-h-[80%] xs:max-w-[80%]   absolute bottom-[10px]">
+                <img src="./Assets/student.png"  id="image" alt="student-img">
+            </div>
+            
+         </div>
+         <!-- right section -->
+            <div class="form lg:w-[55%] h-[100%]  lg:p-[10px] xs:h-[auto] xs:w-full xs:mt-[10px] relative lg:left-[20px] " >
+                <form action="" method="post" class="flex flex-col gap-0" onsubmit="return validateForm()">
+
+                    <!-- Personal Information -->
+                    <label for="name" class="text-lg font-semibold">Enter Your Name *</label>
+                    <input type="text" id="name" name="name" class="input-fields px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#EED6BF]" required 
+                           pattern="[A-Za-z\s]{2,50}" 
+                           title="Please enter a valid name (2-50 characters, letters and spaces only)"
+                           placeholder="Full Name" required>
+
+                    <label for="id" class="text-lg font-semibold">Student ID  *</label>
+                    <input type="text" id="id" name="id" class="input-fields px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#EED6BF]" required 
+                           pattern="\d{4,10}"
+                           title="Please enter a valid student ID (4-10 digits)"
+                           placeholder="Student ID (e.g., 12345)" required >
+
+                    <label for="dob" class="text-lg font-semibold">Date of Birth *</label>
+                    <input type="date" id="dob" name="dob" class="input-fields px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#EED6BF]" required
+                           max="" 
+                           onfocus="this.max=new Date().toISOString().split('T')[0]"
+                           title="Please select a valid date of birth" required>
+
+                    <!-- Contact Information -->
+                    <label for="email" class="text-lg font-semibold">Enter Your Email *</label>
+                    <input type="email" id="email" name="email" class="input-fields px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#EED6BF]" required 
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                           title="Please enter a valid email address (e.g., example@domain.com)"
+                           placeholder="Email" required>
+
+                    <label for="phone" class="text-lg font-semibold">Enter Your Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" class="input-fields px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#EED6BF]" required
+                           pattern="[0-9]{10}" 
+                           title="Please enter a valid 10-digit phone number"
+                           placeholder="Phone (10 digits)" required>
+
+                    <label for="address" class="text-lg font-semibold">Address *</label>
+                    <input id="address" name="address" class="input-fields px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#EED6BF]" required
+                           minlength="5" maxlength="200"
+                           title="Please enter a valid address (5-200 characters)"
+                           placeholder="Full Address"  required>
+
+                    <!-- Submit -->
+                    <div class="Button-group">
+                        <input type="submit" value="Register" class="bg-[#EED6BF] text-white px-6 py-2 rounded hover:bg-[#D6BFAE] cursor-pointer transition-colors">
+                        <input type="reset" id="reset-form" value="Reset" class=" bg-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-400 cursor-pointer transition-colors">
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </section>
+    <section class="display-section" id="display">
+        
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>
